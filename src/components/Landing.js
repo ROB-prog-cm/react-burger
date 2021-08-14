@@ -17,8 +17,10 @@ export class Landing extends Component {
     const {title, url} = restaurant
     this.setState({title, url, display: false})
   }
+
   goToRestaurant = () => {
-    console.log('go')
+    const {url} = this.state;
+    this.props.history.push(`/restaurant/${url}`)
   }
 
   render() {
