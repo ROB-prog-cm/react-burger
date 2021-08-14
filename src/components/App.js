@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Header} from "./Header";
 import {Order} from "./Order";
 import {MenuAdmin} from "./MenuAdmin";
+import sampleBurgers from "../sample-burgers";
+import Burger from "./Burger";
 
 
 export class App extends React.Component {
@@ -17,6 +19,12 @@ export class App extends React.Component {
     this.setState({burgers})
   }
 
+  loadSampleBurgers = () => {
+    this.setState({
+      burgers: sampleBurgers
+    })
+  }
+
   render() {
     return (
       /* <SignIn>*/
@@ -24,11 +32,18 @@ export class App extends React.Component {
         <div className='menu'>
           <Header title='Hot Burgers'/>
           <ul className='burgers'>
-            {/*   <Burger/>*/}
+            {Object.keys(this.state.burgers).map((key) => {
+              return <Burger
+                details={this.state.burgers[key]}
+                key={key}
+                index={key}/>
+            })}
           </ul>
         </div>
         <Order/>
-        <MenuAdmin addBurger={this.addBurger}/>
+        <MenuAdmin
+          loadSampleBurgers={this.loadSampleBurgers}
+          addBurger={this.addBurger}/>
       </div>
       /*    </SignIn>*/
     );
