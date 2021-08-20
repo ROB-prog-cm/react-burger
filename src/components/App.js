@@ -9,6 +9,11 @@ import base from '../base'
 
 
 export class App extends React.Component {
+
+  static propTypes = {
+    match: PropTypes.object
+  }
+
   state = {
     burgers: {},
     order: {}
@@ -60,9 +65,23 @@ export class App extends React.Component {
     this.setState({order});
   };
 
+  updateBurger = (key, updatedBurger) => {
+    const burgers = {...this.state.burgers};
+    // 2. Обновляем нужный burger
+    burgers[key] = updatedBurger;
+    // 3. Записать новый объект burgers в state
+    this.setState({burgers});
+  };
+  deleteBurger = key => {
+    const burgers = {...this.state.burgers};
+    // 2. Удаляем burger
+    burgers[key] = null;
+    // 3. Записать наш новый объект burgers в state
+    this.setState({burgers});
+  };
+
   render() {
     return (
-      /* <SignIn>*/
       <div className='burger-paradise'>
         <div className='menu'>
           <Header title='Hot Burgers'/>
@@ -81,11 +100,13 @@ export class App extends React.Component {
           order={this.state.order}
           burgers={this.state.burgers}/>
         <MenuAdmin
+          updateBurger={this.updateBurger}
+          deleteBurger={this.deleteBurger}
+          handleLogout={this.handleLogout}
           burgers={this.state.burgers}
           loadSampleBurgers={this.loadSampleBurgers}
           addBurger={this.addBurger}/>
       </div>
-      /*    </SignIn>*/
     );
   }
 }

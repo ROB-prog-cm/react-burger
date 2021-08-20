@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 
 export const Header = ({title}) => {
+
   return (
     <header className='top'>
       <div className='wrap'>
@@ -24,4 +25,7 @@ export const Header = ({title}) => {
       </div>
     </header>
   );
+  Header.propTypes = {
+    title: PropTypes.string.isRequired
+  }
 }

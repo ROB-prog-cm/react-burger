@@ -1,7 +1,13 @@
 import React, {Component} from "react";
 import restaurants from '../sample-restaurants'
+import PropTypes from 'prop-types'
 
 export class Landing extends Component {
+
+  static propTypes = {
+    history: PropTypes.object
+  }
+
   state = {
     display: false,
     title: '',

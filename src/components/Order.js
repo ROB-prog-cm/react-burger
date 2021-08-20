@@ -9,7 +9,6 @@ export class Order extends React.Component {
     order: PropTypes.object,
     deleteFromOrder: PropTypes.func
   };
-
   renderOrder = key => {
     const burger = this.props.burgers[key];
     const count = this.props.order[key];
@@ -70,15 +69,12 @@ export class Order extends React.Component {
       }
       return prevTotal;
     }, 0);
-
     return (
       <div className='order-wrap'>
         <h2>Ваш Заказ</h2>
-
         <TransitionGroup component='ul' className='order'>
           {orderIds.map(this.renderOrder)}
         </TransitionGroup>
-
         {total > 0 ? (
           <Shipment total={total}/>
         ) : (
