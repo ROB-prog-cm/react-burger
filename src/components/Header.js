@@ -25,7 +25,7 @@ export const Header = ({title}) => {
       </div>
     </header>
   );
-  Header.propTypes = {
-    title: PropTypes.string.isRequired
-  }
+}
+Header.propTypes = {
+  title: PropTypes.string.isRequired
 }
